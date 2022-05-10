@@ -4,6 +4,8 @@
 
 using namespace std;
 
+bool overwrite(string& path, string& str);
+
 int main() {
 
 	setlocale(LC_ALL, "Russian");
@@ -45,6 +47,31 @@ int main() {
 	in.close();
 	remove("file.txt");
 
+	// Задача 2
+
+	cout << "\nЗадача 2.\n";
+
+	string path2 = "file2.txt";
+	string str = "Строка, которая заменяет содержимое файла";
+
+	overwrite(path2, str) ? cout << "True" << "\n" : cout << "False" << "\n";
+
+	remove("file2.txt");
 
 	return 0;
 }
+
+// Задача 2
+
+bool overwrite(string& path, string& str) {
+	ofstream out2;
+	out2.open(path, ios::in || ios::out);
+
+	if (out2.is_open()) {
+		out2 << str << "\n";
+		out2.close();
+		return true;
+	}
+	return false;
+}
+
